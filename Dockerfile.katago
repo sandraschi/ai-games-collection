@@ -20,13 +20,13 @@ RUN pip3 install --no-cache-dir aiohttp aiohttp-cors
 
 RUN echo '#!/bin/bash\n\
     export KATAGO_PATH=/app/katago/katago\n\
-    export KATAGO_PORT=10782\n\
+    export KATAGO_PORT=11213\n\
     exec python3 /app/engines/go-server.py\n\
     ' > /app/start-katago.sh && chmod +x /app/start-katago.sh
 
-EXPOSE 10782
+EXPOSE 11213
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:10782/api/status || exit 1
+    CMD curl -f http://localhost:11213/api/status || exit 1
 
 CMD ["/app/start-katago.sh"]

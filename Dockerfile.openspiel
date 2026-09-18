@@ -16,13 +16,13 @@ COPY engines/open_spiel_server.py /app/engines/open_spiel_server.py
 RUN pip3 install --no-cache-dir aiohttp aiohttp-cors open-spiel
 
 RUN echo '#!/bin/bash\n\
-    export OPENSPIEL_PORT=10787\n\
-    exec python3 /app/engines/open_spiel_server.py --port 10787\n\
+    export OPENSPIEL_PORT=11216\n\
+    exec python3 /app/engines/open_spiel_server.py --port 11216\n\
     ' > /app/start-openspiel.sh && chmod +x /app/start-openspiel.sh
 
-EXPOSE 10787
+EXPOSE 11216
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
-    CMD curl -f http://localhost:10787/api/status || exit 1
+    CMD curl -f http://localhost:11216/api/status || exit 1
 
 CMD ["/app/start-openspiel.sh"]

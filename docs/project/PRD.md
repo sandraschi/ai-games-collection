@@ -42,9 +42,9 @@ AI Games Collection MCP is a state-of-the-art Model Context Protocol (MCP) serve
 
 #### FR-004: Standardized Engine Ports
 **Priority:** P1 (High)
-- Port 10780: Stockfish Engine
-- Port 10781: Shogi Engine
-- Port 10782: Go Engine
+- Port 11211: Stockfish Engine
+- Port 11212: Shogi Engine
+- Port 11213: Go Engine
 
 ---
 

@@ -301,7 +301,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--port",
         type=int,
-        default=int(os.environ.get("MOHEX_PORT", 10711)),
+        default=int(os.environ.get("MOHEX_PORT", 11210)),
         help="Port to run the server on",
     )
     args = parser.parse_args()

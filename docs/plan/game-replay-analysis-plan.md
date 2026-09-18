@@ -85,11 +85,11 @@ For each game, the changes are:
 
 | Game | Engine | API | Analysis method |
 |------|--------|-----|-----------------|
-| Chess | Stockfish (:10780) | `POST /api/move {fen}` | Get best move at position before player's move, compare |
-| Hex | MoHex (:10711) | `POST /api/move {board}` | Get best move, compare with actual |
+| Chess | Stockfish (:11211) | `POST /api/move {fen}` | Get best move at position before player's move, compare |
+| Hex | MoHex (:11210) | `POST /api/move {board}` | Get best move, compare with actual |
 | Checkers | (no engine) | — | Manual analysis or skip |
-| Go | KataGo (:10782) | `POST /api/move {moves}` | Get KataGo's recommended move |
-| Othello | Edax (:10785) | `POST /api/move {fen}` | Get Edax's best move |
+| Go | KataGo (:11213) | `POST /api/move {moves}` | Get KataGo's recommended move |
+| Othello | Edax (:11214) | `POST /api/move {fen}` | Get Edax's best move |
 
 ### Fleet Pattern Extraction
 

@@ -128,10 +128,10 @@ async def api_config():
             "ai_server_host": os.environ.get("AI_SERVER_HOST", "localhost"),
             "is_remote": False,
             "ports": {
-                "stockfish": int(os.environ.get("AI_STOCKFISH_PORT", "10780")),
-                "go": int(os.environ.get("KATAGO_PORT", "10782")),
-                "shogi": int(os.environ.get("YANEURAOU_PORT", "10781")),
-                "openspiel": int(os.environ.get("OPENSPIEL_PORT", "10787")),
+                "stockfish": int(os.environ.get("AI_STOCKFISH_PORT", "11211")),
+                "go": int(os.environ.get("KATAGO_PORT", "11213")),
+                "shogi": int(os.environ.get("YANEURAOU_PORT", "11212")),
+                "openspiel": int(os.environ.get("OPENSPIEL_PORT", "11216")),
                 "web": int(os.environ.get("WEB_PORT", "10986")),
             },
         }
@@ -146,10 +146,10 @@ async def api_status():
             "server": "ai-games-collection-mcp-operator",
             "version": "2.5.0",
             "engines": {
-                "stockfish": {"url": os.environ.get("STOCKFISH_URL", "http://localhost:10780")},
-                "shogi": {"url": os.environ.get("SHOGI_URL", "http://localhost:10781")},
-                "go": {"url": os.environ.get("GO_URL", "http://localhost:10782")},
-                "openspiel": {"url": os.environ.get("OPENSPIEL_URL", "http://localhost:10787")},
+                "stockfish": {"url": os.environ.get("STOCKFISH_URL", "http://localhost:11211")},
+                "shogi": {"url": os.environ.get("SHOGI_URL", "http://localhost:11212")},
+                "go": {"url": os.environ.get("GO_URL", "http://localhost:11213")},
+                "openspiel": {"url": os.environ.get("OPENSPIEL_URL", "http://localhost:11216")},
             },
         }
     )

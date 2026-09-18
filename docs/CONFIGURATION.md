@@ -20,9 +20,9 @@
 |------|---------|-------------|
 | 10986 | Frontend (Vite dev) | web_sota/vite.config.ts |
 | 10987 | Backend (FastAPI + FastMCP) | env AI_GAMES_COLLECTION_BACKEND_PORT |
-| 10780 | Stockfish | env STOCKFISH_URL |
-| 10781 | Shogi | env SHOGI_URL |
-| 10782 | Go | env GO_URL |
+| 11211 | Stockfish | env STOCKFISH_URL |
+| 11212 | Shogi | env SHOGI_URL |
+| 11213 | Go | env GO_URL |
 
 ## Server Config
 

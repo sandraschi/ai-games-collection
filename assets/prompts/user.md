@@ -88,7 +88,7 @@ For a training program: first call get_player_statistics to establish a baseline
 
 ## Docker Deployment
 
-To deploy with Docker, run docker compose up -d --build from the repo root directory. This builds and starts all four containers: the gateway on port 10987, Stockfish on 10780, Shogi on 10781, and Go on 10782. Wait 10-15 seconds for all services to initialize. Verify the gateway is healthy with curl http://localhost:10987/health which should return a JSON response with status ok. The gateway proxies analysis requests to the appropriate engine container by name through the Docker bridge network. Check all containers are running with docker compose ps. View logs with docker compose logs -f for real-time output. Stop everything with docker compose down.
+To deploy with Docker, run docker compose up -d --build from the repo root directory. This builds and starts all four containers: the gateway on port 10987, Stockfish on 11211, Shogi on 11212, and Go on 11213. Wait 10-15 seconds for all services to initialize. Verify the gateway is healthy with curl http://localhost:10987/health which should return a JSON response with status ok. The gateway proxies analysis requests to the appropriate engine container by name through the Docker bridge network. Check all containers are running with docker compose ps. View logs with docker compose logs -f for real-time output. Stop everything with docker compose down.
 
 ## Tauri Desktop Installation
 

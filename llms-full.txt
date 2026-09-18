@@ -20,12 +20,12 @@ Firebase Realtime Database  <-  browser games + MCP backend (games/{gameId} node
 |---------|------|-------------|
 | Frontend (Vite) | 10986 | React 19 SPA dashboard |
 | Backend (FastAPI) | 10987 | REST /api/v1/* + FastMCP /mcp/ |
-| Stockfish | 10780 | Chess engine API |
-| Shogi (YaneuraOu) | 10781 | Shogi engine API |
-| Go (KataGo) | 10782 | Go engine API |
-| Edax | 10785 | Othello engine API |
-| GNU Backgammon | 10786 | Backgammon engine API |
-| OpenSpiel | 10787 | 119-game framework API |
+| Stockfish | 11211 | Chess engine API |
+| Shogi (YaneuraOu) | 11212 | Shogi engine API |
+| Go (KataGo) | 11213 | Go engine API |
+| Edax | 11214 | Othello engine API |
+| GNU Backgammon | 11215 | Backgammon engine API |
+| OpenSpiel | 11216 | 119-game framework API |
 | MoHex | 10775 | Hex engine API |
 
 ## MCP Tools
@@ -60,8 +60,8 @@ Firebase Realtime Database  <-  browser games + MCP backend (games/{gameId} node
 | `AI_GAMES_COLLECTION_BACKEND_PORT` | 10987 | Gateway port |
 | `AI_GAMES_COLLECTION_MCP_LOG_LEVEL` | INFO | Log level |
 | `AI_GAMES_COLLECTION_TAURI` | 0 | 1 when running inside the Tauri shell |
-| `STOCKFISH_URL` / `SHOGI_URL` / `GO_URL` | localhost:10780/81/82 | Engine URLs |
-| `EDAX_URL` / `GNUBG_URL` / `OPENSPIEL_URL` / `MOHEX_URL` | 10785/86/87/75 | Engine URLs |
+| `STOCKFISH_URL` / `SHOGI_URL` / `GO_URL` | localhost:11211/81/82 | Engine URLs |
+| `EDAX_URL` / `GNUBG_URL` / `OPENSPIEL_URL` / `MOHEX_URL` | 11214/86/87/75 | Engine URLs |
 | `FIREBASE_DATABASE_URL` | — | RTDB URL (ai-games-collection-mcp/.env) |
 | `FIREBASE_SERVICE_ACCOUNT_JSON` | — | Service account path/JSON (ai-games-collection-mcp/.env) |
 | `AI_GAMES_COLLECTION_FRONTEND_DIST` | web_sota/dist | React dist override for Tauri/PyInstaller |
@@ -78,12 +78,12 @@ Firebase Realtime Database  <-  browser games + MCP backend (games/{gameId} node
 ```yaml
 services:
   games-gateway:  # Port 10987
-  stockfish-engine:  # Port 10780
-  shogi-engine:  # Port 10781
-  go-engine:  # Port 10782
-  edax-engine:  # Port 10785
-  gnubg-engine:  # Port 10786
-  openspiel-engine:  # Port 10787
+  stockfish-engine:  # Port 11211
+  shogi-engine:  # Port 11212
+  go-engine:  # Port 11213
+  edax-engine:  # Port 11214
+  gnubg-engine:  # Port 11215
+  openspiel-engine:  # Port 11216
   mohex-engine:  # Port 10775
 ```
 

@@ -167,7 +167,7 @@ async def create_app():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("GNUBG_PORT", 10786))
+    port = int(os.environ.get("GNUBG_PORT", 11215))
     logger.info("GNU Backgammon Server (v1.08)")
     logger.info("Starting on port %d", port)
 

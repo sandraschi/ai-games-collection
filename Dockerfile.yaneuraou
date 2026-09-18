@@ -20,13 +20,13 @@ RUN pip3 install --no-cache-dir aiohttp aiohttp-cors
 
 RUN echo '#!/bin/bash\n\
     export YANEURAOU_PATH=/app/yaneuraou/YaneuraOu\n\
-    export YANEURAOU_PORT=10781\n\
+    export YANEURAOU_PORT=11212\n\
     exec python3 /app/engines/shogi-server.py\n\
     ' > /app/start-shogi.sh && chmod +x /app/start-shogi.sh
 
-EXPOSE 10781
+EXPOSE 11212
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD curl -f http://localhost:10781/api/status || exit 1
+    CMD curl -f http://localhost:11212/api/status || exit 1
 
 CMD ["/app/start-shogi.sh"]

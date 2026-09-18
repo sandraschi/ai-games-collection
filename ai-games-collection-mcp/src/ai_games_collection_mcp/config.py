@@ -14,16 +14,16 @@ for _candidate in _load_env_candidates:
         load_dotenv(_candidate)
         break
 
-# Engine URLs (external) — registry ports 10780-10782 (native start.ps1 == Docker mode)
-STOCKFISH_URL = os.environ.get("STOCKFISH_URL", "http://localhost:10780")
-SHOGI_URL = os.environ.get("SHOGI_URL", "http://localhost:10781")
-GO_URL = os.environ.get("GO_URL", "http://localhost:10782")
+# Engine URLs (external) — registry ports 11211-11213 (native start.ps1 == Docker mode)
+STOCKFISH_URL = os.environ.get("STOCKFISH_URL", "http://localhost:11211")
+SHOGI_URL = os.environ.get("SHOGI_URL", "http://localhost:11212")
+GO_URL = os.environ.get("GO_URL", "http://localhost:11213")
 
 # New game engines (added 2026-07-02)
-EDAX_URL = os.environ.get("EDAX_URL", "http://localhost:10785")
-GNUBG_URL = os.environ.get("GNUBG_URL", "http://localhost:10786")
-OPENSPIEL_URL = os.environ.get("OPENSPIEL_URL", "http://localhost:10787")
-MOHEX_URL = os.environ.get("MOHEX_URL", "http://localhost:10711")
+EDAX_URL = os.environ.get("EDAX_URL", "http://localhost:11214")
+GNUBG_URL = os.environ.get("GNUBG_URL", "http://localhost:11215")
+OPENSPIEL_URL = os.environ.get("OPENSPIEL_URL", "http://localhost:11216")
+MOHEX_URL = os.environ.get("MOHEX_URL", "http://localhost:11210")
 
 # Firebase Config
 FIREBASE_SERVICE_ACCOUNT_JSON = os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON")

@@ -17,6 +17,6 @@ engines) served from the Docker stack on port 10987.
 
 - The webapp (port 10986) connects to the main games app running in Docker on port 10987.
   If the backend is offline, the Docker stack needs `docker compose up -d`.
-- Engine ports: Stockfish 10780, YaneuraOu 10781, KataGo 10782, Edax 10785, GNU Backgammon 10786,
-  OpenSpiel 10787, MoHex 10775.
+- Engine ports: Stockfish 11211, YaneuraOu 11212, KataGo 11213, Edax 11214, GNU Backgammon 11215,
+  OpenSpiel 11216, MoHex 10775.
 - Never commit `.env`, `native/resources/*.exe`, or `*.bak` files.

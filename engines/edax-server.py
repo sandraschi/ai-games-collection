@@ -224,7 +224,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--port",
         type=int,
-        default=int(os.environ.get("EDAX_PORT", 10785)),
+        default=int(os.environ.get("EDAX_PORT", 11214)),
         help="Port to run the server on",
     )
     args = parser.parse_args()

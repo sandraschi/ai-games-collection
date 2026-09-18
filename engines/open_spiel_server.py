@@ -330,7 +330,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--port",
         type=int,
-        default=int(os.environ.get("OPENSPIEL_PORT", 10787)),
+        default=int(os.environ.get("OPENSPIEL_PORT", 11216)),
         help="Port to run the server on",
     )
     args = parser.parse_args()

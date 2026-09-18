@@ -115,13 +115,13 @@ All engines run in Docker containers (orchestrated via `docker-compose.yml`) or 
 
 | Engine | Game | Version | License | Port | Windows | macOS | Docker Required? |
 |--------|------|---------|---------|------|---------|-------|------------------|
-| Stockfish | Chess | 16 | GPL-3.0 | 10780 | ✅ Built-in | ✅ `brew install stockfish` | No |
-| YaneuraOu | Shogi | 9.40 | GPL-3.0 | 10781 | ✅ Built-in | ✅ Built-in | No |
-| KataGo | Go | 1.16.5 | MIT | 10782 | ✅ Built-in | ✅ `brew install katago` | No |
-| Edax | Othello | 4.6 | GPL-3.0 | 10785 | ✅ `engines/data/` | ❌ | Optional |
-| OpenSpiel | 119 games | 1.6.15 | Apache-2.0 | 10787 | ✅ pip | ✅ pip | No |
-| GNU Backgammon | Backgammon | 1.08 | GPL-3.0 | 10786 | ❌ | ✅ `brew install gnubg` | Optional (Linux-only) |
-| MoHex | Hex | Source | LGPL-3.0 | 10711 | ❌ | ✅ `scripts/build-mohex-macos.sh` | **Yes** (or build native) |
+| Stockfish | Chess | 16 | GPL-3.0 | 11211 | ✅ Built-in | ✅ `brew install stockfish` | No |
+| YaneuraOu | Shogi | 9.40 | GPL-3.0 | 11212 | ✅ Built-in | ✅ Built-in | No |
+| KataGo | Go | 1.16.5 | MIT | 11213 | ✅ Built-in | ✅ `brew install katago` | No |
+| Edax | Othello | 4.6 | GPL-3.0 | 11214 | ✅ `engines/data/` | ❌ | Optional |
+| OpenSpiel | 119 games | 1.6.15 | Apache-2.0 | 11216 | ✅ pip | ✅ pip | No |
+| GNU Backgammon | Backgammon | 1.08 | GPL-3.0 | 11215 | ❌ | ✅ `brew install gnubg` | Optional (Linux-only) |
+| MoHex | Hex | Source | LGPL-3.0 | 11210 | ❌ | ✅ `scripts/build-mohex-macos.sh` | **Yes** (or build native) |
 
 **Start all engines:**
 
@@ -151,7 +151,7 @@ cd ai-game-chest
 .\start.ps1
 ```
 
-This launches all seven AI engines (including OpenSpiel on 10787) + the game gateway. Opens `http://localhost:10987/` — browse 180+ games, play chess vs Stockfish, shogi vs YaneuraOu, or any of 107 OpenSpiel environments. Board-game multiplayer runs over Firebase (anonymous sign-in; enable it in the Firebase console → Authentication → Anonymous).
+This launches all seven AI engines (including OpenSpiel on 11216) + the game gateway. Opens `http://localhost:10987/` — browse 180+ games, play chess vs Stockfish, shogi vs YaneuraOu, or any of 107 OpenSpiel environments. Board-game multiplayer runs over Firebase (anonymous sign-in; enable it in the Firebase console → Authentication → Anonymous).
 
 For other install methods (manual, Docker, Tauri desktop), see [INSTALL.md](INSTALL.md).
 

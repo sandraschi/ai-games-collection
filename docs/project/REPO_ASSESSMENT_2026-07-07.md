@@ -27,7 +27,7 @@ The replay feature is real but its documentation overstates it: the README claim
 | C1 | Committed credentials, no gitignore coverage | **HALF-FIXED — still critical** | `.gitignore` now lists both paths, but both files remain in `.git/index` (grep of index, latin-1). Files exist on disk. Remote: `github.com/sandraschi/ai-games-collection.git` |
 | C2 | Unanchored `src/` gitignore rule silently excluding source trees | **FIXED** | `.gitignore` now has anchored `/src/` with explanatory comment; legacy `src/` tree removed per CHANGELOG 2.6.0 |
 | C3 | Broken release CI (unreachable job conditions) | **FIXED (claimed, unverified)** | CHANGELOG 2.6.0: "CI: fixed tag-trigger conditions; migrated from pip to uv; replaced zip with Compress-Archive". Workflow file not re-inspected this session |
-| C4 | Port schism (legacy 10001–10003 vs gateway 10780+) | **FIXED in code** | `js/api-config.js` (modified Jul 6 ~11:33Z) now reads ports from `/api/config` with 10780/10781/10782 fallbacks. Legacy ports survive only in one stale comment |
+| C4 | Port schism (legacy 10001–10003 vs gateway 11211+) | **FIXED in code** | `js/api-config.js` (modified Jul 6 ~11:33Z) now reads ports from `/api/config` with 11211/11212/11213 fallbacks. Legacy ports survive only in one stale comment |
 
 ### High-severity bugs from yesterday
 
@@ -112,7 +112,7 @@ The plan specifies a rich `{game}-games` library schema (multiple saved games, m
 | N5 | Low | **TODO.md stale in both directions:** chess 6-move bug listed open though its fixes landed; no entry for finishing the replay fleet rollout (15 games), Othello honesty gap, or shared-module migration of chess/checkers/hex |
 | N6 | Low | **9-byte stub files** `test_katago.html`, `test_yaneuraou.html` at repo root — junk, delete |
 | N7 | Low | **`Wbridge5_setup.exe` (1.5 MB) at repo root.** Gitignored, but if it was committed before the ignore rule it is still tracked (same mechanism as N1). Check with `git ls-files | Select-String Wbridge5` during the N1 remediation |
-| N8 | Info | README comment in api-config still references "legacy 10001-10003 as fallback" though code fallbacks are 10780+ — stale comment, one-line fix |
+| N8 | Info | README comment in api-config still references "legacy 10001-10003 as fallback" though code fallbacks are 11211+ — stale comment, one-line fix |
 
 ---
 

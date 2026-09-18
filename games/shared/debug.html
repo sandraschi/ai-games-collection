@@ -139,7 +139,7 @@
                 <h4>🔧 If Tests Fail:</h4>
                 <ul>
                     <li><strong>AI servers down:</strong> Run <code>.\START_ALL_SERVERS.ps1</code></li>
-                    <li><strong>Network issues:</strong> Check firewall allows ports 10780-10782</li>
+                    <li><strong>Network issues:</strong> Check firewall allows ports 11211-11213</li>
                     <li><strong>Docker problems:</strong> Use <code>host.docker.internal</code> for AI host</li>
                     <li><strong>Remote access:</strong> Setup tunnel or use Tailscale VPN</li>
                     <li><strong>Browser issues:</strong> Check console (F12) for errors</li>
@@ -251,9 +251,9 @@
             results.textContent = 'Testing AI servers...\n';
 
             const servers = [
-                { name: 'Stockfish', port: 10780, url: apiConfig.stockfishUrl },
-                { name: 'YaneuraOu', port: 10781, url: apiConfig.shogiUrl },
-                { name: 'KataGo', port: 10782, url: apiConfig.goUrl }
+                { name: 'Stockfish', port: 11211, url: apiConfig.stockfishUrl },
+                { name: 'YaneuraOu', port: 11212, url: apiConfig.shogiUrl },
+                { name: 'KataGo', port: 11213, url: apiConfig.goUrl }
             ];
 
             for (const server of servers) {
@@ -396,15 +396,15 @@
         }
 
         async function testChessAi() {
-            await testAiServer('Stockfish (Chess)', 10780);
+            await testAiServer('Stockfish (Chess)', 11211);
         }
 
         async function testShogiAi() {
-            await testAiServer('YaneuraOu (Shogi)', 10781);
+            await testAiServer('YaneuraOu (Shogi)', 11212);
         }
 
         async function testGoAi() {
-            await testAiServer('KataGo (Go)', 10782);
+            await testAiServer('KataGo (Go)', 11213);
         }
 
         
@@ -416,9 +416,9 @@
 
             // Map port to service name for nginx proxy paths
             const serviceMap = {
-                10780: 'stockfish',
-                10781: 'shogi',
-                10782: 'go'
+                11211: 'stockfish',
+                11212: 'shogi',
+                11213: 'go'
             };
 
             const service = serviceMap[port] || 'unknown';

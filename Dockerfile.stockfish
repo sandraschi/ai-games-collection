@@ -26,13 +26,13 @@ RUN pip3 install --no-cache-dir aiohttp aiohttp-cors
 
 RUN echo '#!/bin/bash\n\
     export STOCKFISH_PATH=/app/stockfish/src/stockfish\n\
-    export AI_STOCKFISH_PORT=10780\n\
-    exec python3 /app/engines/stockfish-server.py --port 10780\n\
+    export AI_STOCKFISH_PORT=11211\n\
+    exec python3 /app/engines/stockfish-server.py --port 11211\n\
     ' > /app/start-stockfish.sh && chmod +x /app/start-stockfish.sh
 
-EXPOSE 10780
+EXPOSE 11211
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:10780/api/status || exit 1
+    CMD curl -f http://localhost:11211/api/status || exit 1
 
 CMD ["/app/start-stockfish.sh"]

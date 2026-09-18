@@ -49,13 +49,13 @@ uv run pytest tests/ -q        # Run tests
 |---------|------|
 | Frontend (Vite) | 10986 |
 | Backend (FastAPI + FastMCP) | 10987 |
-| Stockfish (chess) | 10780 |
-| YaneuraOu (shogi) | 10781 |
-| KataGo (Go) | 10782 |
-| Edax (Othello) | 10785 |
-| GNU Backgammon | 10786 |
-| OpenSpiel (119 games) | 10787 |
-| MoHex (Hex) | 10711 |
+| Stockfish (chess) | 11211 |
+| YaneuraOu (shogi) | 11212 |
+| KataGo (Go) | 11213 |
+| Edax (Othello) | 11214 |
+| GNU Backgammon | 11215 |
+| OpenSpiel (119 games) | 11216 |
+| MoHex (Hex) | 11210 |
 
 ## Webapp Stack
 

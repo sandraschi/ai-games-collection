@@ -134,7 +134,7 @@
                 <ul style="color: #FFD700;">
                     <li>Make sure AI servers are running on Windows host</li>
                     <li>Check that Docker container can reach host.docker.internal</li>
-                    <li>Verify firewall allows connections to ports 10780-10782</li>
+                    <li>Verify firewall allows connections to ports 11211-11213</li>
                     <li>For remote access, ensure proper port forwarding or VPN</li>
                     <li>Try accessing directly: http://YOUR-HOST-IP:10986</li>
                 </ul>
@@ -180,15 +180,15 @@
         }
 
         async function testChessAi() {
-            await testAiServer('Stockfish (Chess)', 10780);
+            await testAiServer('Stockfish (Chess)', 11211);
         }
 
         async function testShogiAi() {
-            await testAiServer('YaneuraOu (Shogi)', 10781);
+            await testAiServer('YaneuraOu (Shogi)', 11212);
         }
 
         async function testGoAi() {
-            await testAiServer('KataGo (Go)', 10782);
+            await testAiServer('KataGo (Go)', 11213);
         }
 
         async function testAiServer(name, port) {
@@ -197,9 +197,9 @@
 
             // Map port to service name for new proxied API paths
             const serviceMap = {
-                10780: 'stockfish',
-                10781: 'shogi',
-                10782: 'go',
+                11211: 'stockfish',
+                11212: 'shogi',
+                11213: 'go',
                 
             };
 
@@ -266,9 +266,9 @@
                 resultsDiv.innerHTML += '<div class="test-result info"><strong>AI Server Status:</strong></div>';
                 apiConfig.connectivityStatus.forEach((status, port) => {
                     const statusText = status ? '✅ Connected' : '❌ Disconnected';
-                    const serviceName = port === 10780 ? 'Stockfish' :
-                                      port === 10781 ? 'YaneuraOu' :
-                                      port === 10782 ? 'KataGo' :
+                    const serviceName = port === 11211 ? 'Stockfish' :
+                                      port === 11212 ? 'YaneuraOu' :
+                                      port === 11213 ? 'KataGo' :
                                       'Unknown';
                     resultsDiv.innerHTML += `<div class="test-result ${status ? 'success' : 'error'}">Port ${port} (${serviceName}): ${statusText}</div>`;
                 });
@@ -361,7 +361,7 @@
 
             for (const host of testHosts) {
                 try {
-                    const response = await fetch(`http://${host}:10780/api/status`, {
+                    const response = await fetch(`http://${host}:11211/api/status`, {
                         method: 'GET',
                         signal: AbortSignal.timeout(2000)
                     });
@@ -369,7 +369,7 @@
                     if (response.ok) {
                         resultsDiv.innerHTML += `
                             <div class="test-result success">
-                                ✅ AI accessible at: ${host}:10780<br>
+                                ✅ AI accessible at: ${host}:11211<br>
                                 Use this host for AI connections!
                             </div>
                         `;
@@ -389,7 +389,7 @@
                 } catch (error) {
                     resultsDiv.innerHTML += `
                         <div class="test-result warning">
-                            ❌ ${host}:10780 - ${error.message}
+                            ❌ ${host}:11211 - ${error.message}
                         </div>
                     `;
                 }

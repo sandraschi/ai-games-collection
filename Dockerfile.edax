@@ -36,13 +36,13 @@ RUN pip3 install --no-cache-dir aiohttp aiohttp-cors
 
 RUN echo '#!/bin/bash\n\
     export EDAX_PATH=/app/edax\n\
-    export EDAX_PORT=10785\n\
-    exec python3 /app/engines/edax-server.py --port 10785\n\
+    export EDAX_PORT=11214\n\
+    exec python3 /app/engines/edax-server.py --port 11214\n\
     ' > /app/start-edax.sh && chmod +x /app/start-edax.sh
 
-EXPOSE 10785
+EXPOSE 11214
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:10785/api/status || exit 1
+    CMD curl -f http://localhost:11214/api/status || exit 1
 
 CMD ["/app/start-edax.sh"]

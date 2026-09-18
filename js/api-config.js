@@ -162,9 +162,9 @@ class ApiConfig {
     async _checkAiConnectivity() {
         // Port connectivity check — reads configured ports from /api/config, legacy fallback
         const services = [
-            { name: 'stockfish',  port: (this.serverPorts && this.serverPorts.stockfish) || 10780, path: '/api/status' },
-            { name: 'katago',    port: (this.serverPorts && this.serverPorts.katago) || 10782, path: '/api/status' },
-            { name: 'yaneuraou', port: (this.serverPorts && this.serverPorts.yaneuraou) || 10781, path: '/api/status' }
+            { name: 'stockfish',  port: (this.serverPorts && this.serverPorts.stockfish) || 11211, path: '/api/status' },
+            { name: 'katago',    port: (this.serverPorts && this.serverPorts.katago) || 11213, path: '/api/status' },
+            { name: 'yaneuraou', port: (this.serverPorts && this.serverPorts.yaneuraou) || 11212, path: '/api/status' }
         ];
 
         for (const service of services) {
@@ -218,21 +218,21 @@ class ApiConfig {
         if (this._useProxy()) {
             return `${this.protocol}//${this.currentHost}${this.currentPort ? ':' + this.currentPort : ''}/api/stockfish`;
         }
-        const port = (this.serverPorts && this.serverPorts.stockfish) || 10780;
+        const port = (this.serverPorts && this.serverPorts.stockfish) || 11211;
         return this.getApiBaseUrl(port);
     }
     get shogiUrl() {
         if (this._useProxy()) {
             return `${this.protocol}//${this.currentHost}${this.currentPort ? ':' + this.currentPort : ''}/api/shogi`;
         }
-        const port = (this.serverPorts && this.serverPorts.yaneuraou) || 10781;
+        const port = (this.serverPorts && this.serverPorts.yaneuraou) || 11212;
         return this.getApiBaseUrl(port);
     }
     get goUrl() {
         if (this._useProxy()) {
             return `${this.protocol}//${this.currentHost}${this.currentPort ? ':' + this.currentPort : ''}/api/go`;
         }
-        const port = (this.serverPorts && this.serverPorts.katago) || 10782;
+        const port = (this.serverPorts && this.serverPorts.katago) || 11213;
         return this.getApiBaseUrl(port);
     }
 

@@ -1,10 +1,10 @@
 /**
  * Chess AI regression tests — targets B1 bugs (engine desync, dedup body-reuse, timeout race).
- * Requires Stockfish engine running on port 10780 (just docker-up or start.ps1).
+ * Requires Stockfish engine running on port 11211 (just docker-up or start.ps1).
  */
 import { test, expect } from '@playwright/test';
 
-const STOCKFISH = process.env.STOCKFISH_URL || 'http://127.0.0.1:10780';
+const STOCKFISH = process.env.STOCKFISH_URL || 'http://127.0.0.1:11211';
 const INITIAL_FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 
 test.describe('Stockfish Engine — Concurrency & Reliability', () => {

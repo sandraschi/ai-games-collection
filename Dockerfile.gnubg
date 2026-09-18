@@ -15,13 +15,13 @@ COPY engines/gnubg-server.py /app/engines/gnubg-server.py
 RUN pip3 install --no-cache-dir aiohttp aiohttp-cors
 
 RUN echo '#!/bin/bash\n\
-    export GNUBG_PORT=10786\n\
+    export GNUBG_PORT=11215\n\
     exec python3 /app/engines/gnubg-server.py\n\
     ' > /app/start-gnubg.sh && chmod +x /app/start-gnubg.sh
 
-EXPOSE 10786
+EXPOSE 11215
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:10786/api/status || exit 1
+    CMD curl -f http://localhost:11215/api/status || exit 1
 
 CMD ["/app/start-gnubg.sh"]

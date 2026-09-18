@@ -785,7 +785,7 @@ async function initializeAI() {
                 errorMessage += 'Docker mode: Check stockfish-engine container.\n';
                 errorMessage += '1. Run: docker compose ps\n';
                 errorMessage += '2. Both games-collection-web and stockfish-engine must be healthy\n';
-                errorMessage += '3. If timeout: try direct http://' + apiConfig.currentHost + ':10780/api/status\n\n';
+                errorMessage += '3. If timeout: try direct http://' + apiConfig.currentHost + ':11211/api/status\n\n';
                 errorMessage += 'Debug: ' + networkError.message;
             } else if (apiConfig.isLocal) {
                 errorMessage += 'Local Setup Required:\n';

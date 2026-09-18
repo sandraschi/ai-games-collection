@@ -18,7 +18,7 @@
 Clear all ai-games-collection ports:
 
 ```powershell
-Get-NetTCPConnection -LocalPort 10986,10987,10780,10781,10782 -ErrorAction SilentlyContinue |
+Get-NetTCPConnection -LocalPort 10986,10987,11211,11212,11213 -ErrorAction SilentlyContinue |
   ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
 ```
 

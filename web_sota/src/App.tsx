@@ -239,15 +239,15 @@ const App: React.FC = () => {
                 <div className="engines-list glass-panel">
                   <div className="engine-row">
                     <span>Stockfish</span>
-                    <span className="color-secondary">Chess · port 10780</span>
+                    <span className="color-secondary">Chess · port 11211</span>
                   </div>
                   <div className="engine-row">
                     <span>YaneuraOu</span>
-                    <span className="color-secondary">Shogi · port 10781</span>
+                    <span className="color-secondary">Shogi · port 11212</span>
                   </div>
                   <div className="engine-row">
                     <span>KataGo</span>
-                    <span className="color-secondary">Go · port 10782</span>
+                    <span className="color-secondary">Go · port 11213</span>
                   </div>
                 </div>
               ) : (
@@ -288,7 +288,7 @@ const App: React.FC = () => {
                   <div className={`engine-status engine-status--${chessStatus === 'online' ? 'ok' : 'off'}`}>
                     <span className="status-indicator"></span>
                     <span>
-                      Stockfish (port 10780): {chessStatus === 'online' ? 'online' : chessStatus ?? 'unknown'}
+                      Stockfish (port 11211): {chessStatus === 'online' ? 'online' : chessStatus ?? 'unknown'}
                     </span>
                   </div>
                   {chessStatus !== 'online' && (
@@ -535,8 +535,8 @@ const App: React.FC = () => {
                   <pre className="code-block">docker compose up -d</pre>
                   <p className="color-secondary lh-1-6">
                     This launches the gateway (port <code>10987</code>) plus all seven AI engines
-                    (Stockfish 10780, YaneuraOu 10781, KataGo 10782, Edax 10785, GNU Backgammon 10786,
-                    OpenSpiel 10787, MoHex 10775). First start builds the engine images, so allow a few minutes.
+                    (Stockfish 11211, YaneuraOu 11212, KataGo 11213, Edax 11214, GNU Backgammon 11215,
+                    OpenSpiel 11216, MoHex 10775). First start builds the engine images, so allow a few minutes.
                   </p>
                 </div>
                 <div className="doc-card glass-panel">
@@ -572,12 +572,12 @@ const App: React.FC = () => {
                   <div className="help-table__row help-table__row--head">
                     <span>Engine</span><span>Game</span><span>Port</span>
                   </div>
-                  <div className="help-table__row"><span>Stockfish</span><span>Chess</span><span>10780</span></div>
-                  <div className="help-table__row"><span>YaneuraOu</span><span>Shogi</span><span>10781</span></div>
-                  <div className="help-table__row"><span>KataGo</span><span>Go</span><span>10782</span></div>
-                  <div className="help-table__row"><span>Edax</span><span>Othello</span><span>10785</span></div>
-                  <div className="help-table__row"><span>GNU Backgammon</span><span>Backgammon</span><span>10786</span></div>
-                  <div className="help-table__row"><span>OpenSpiel</span><span>119 games</span><span>10787</span></div>
+                  <div className="help-table__row"><span>Stockfish</span><span>Chess</span><span>11211</span></div>
+                  <div className="help-table__row"><span>YaneuraOu</span><span>Shogi</span><span>11212</span></div>
+                  <div className="help-table__row"><span>KataGo</span><span>Go</span><span>11213</span></div>
+                  <div className="help-table__row"><span>Edax</span><span>Othello</span><span>11214</span></div>
+                  <div className="help-table__row"><span>GNU Backgammon</span><span>Backgammon</span><span>11215</span></div>
+                  <div className="help-table__row"><span>OpenSpiel</span><span>119 games</span><span>11216</span></div>
                   <div className="help-table__row"><span>MoHex</span><span>Hex</span><span>10775</span></div>
                   <div className="help-table__row"><span>Gateway (FastAPI + FastMCP)</span><span>REST / MCP / webapp</span><span>10987</span></div>
                   <div className="help-table__row"><span>Dashboard (Vite dev)</span><span>React control panel</span><span>10986</span></div>
@@ -624,7 +624,7 @@ const App: React.FC = () => {
                 <h4>Chess Kibitzer</h4>
                 <p className="color-secondary lh-1-6">
                   Paste a FEN string into the input to analyze any board position. The engine evaluation bar and
-                  best-move hint come from the Stockfish service (port 10780) inside the Docker stack — analysis
+                  best-move hint come from the Stockfish service (port 11211) inside the Docker stack — analysis
                   requires the ai games collection to be running.
                 </p>
                 <div className="doc-card glass-panel">
@@ -653,7 +653,7 @@ const App: React.FC = () => {
                   <h4>Engine port conflict</h4>
                   <p className="color-secondary lh-1-6">
                     If an engine fails to start, something else occupies its port. Check with{' '}
-                    <code>Get-NetTCPConnection -LocalPort 10780</code> and kill the zombie, then restart the
+                    <code>Get-NetTCPConnection -LocalPort 11211</code> and kill the zombie, then restart the
                     stack.
                   </p>
                 </div>

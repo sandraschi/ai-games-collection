@@ -1,11 +1,11 @@
-# Per-repo fleet start config for ai-games-collection
+﻿# Per-repo fleet start config for ai-games-collection
 # Edit ports/backend target here - start.ps1 is fleet-standard.
 @{
     Name         = 'ai-games-collection'
     BackendPort  = 10987
     FrontendPort = 10986
     HealthPath   = '/health'
-    WebRoot      = 'D:\Dev\repos\ai-games-collection\web_sota'
+    WebRoot      = 'web_sota'
     Backend = @{
         Kind          = 'uvicorn'
         UvicornTarget = 'web_sota.server:app'

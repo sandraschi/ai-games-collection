@@ -12,9 +12,9 @@
 #
 # Ports:
 #   10987  — FastAPI + FastMCP gateway
-#   10780  — Stockfish (Docker)
-#   10781  — YaneuraOu (Docker)
-#   10782  — KataGo (Docker)
+#   11211  — Stockfish (Docker)
+#   11212  — YaneuraOu (Docker)
+#   11213  — KataGo (Docker)
 
 services:
   games-gateway:
@@ -26,13 +26,13 @@ services:
       - "10987:10987"
     environment:
       - AI_GAMES_COLLECTION_BACKEND_PORT=10987
-      - STOCKFISH_URL=http://stockfish-engine:10780
-      - SHOGI_URL=http://shogi-engine:10781
-      - GO_URL=http://go-engine:10782
-      - EDAX_URL=http://edax-engine:10785
-      - GNUBG_URL=http://gnubg-engine:10786
-      - OPENSPIEL_URL=http://openspiel-engine:10787
-      - MOHEX_URL=http://mohex-engine:10711
+      - STOCKFISH_URL=http://stockfish-engine:11211
+      - SHOGI_URL=http://shogi-engine:11212
+      - GO_URL=http://go-engine:11213
+      - EDAX_URL=http://edax-engine:11214
+      - GNUBG_URL=http://gnubg-engine:11215
+      - OPENSPIEL_URL=http://openspiel-engine:11216
+      - MOHEX_URL=http://mohex-engine:11210
       - AI_GAMES_COLLECTION_MCP_LOG_LEVEL=INFO
     restart: unless-stopped
     healthcheck:
@@ -57,10 +57,10 @@ services:
       dockerfile: Dockerfile.stockfish
     container_name: games-stockfish
     ports:
-      - "10780:10780"
+      - "11211:11211"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10780/api/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:11211/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -74,10 +74,10 @@ services:
       dockerfile: Dockerfile.yaneuraou
     container_name: games-shogi
     ports:
-      - "10781:10781"
+      - "11212:11212"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10781/api/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:11212/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -91,10 +91,10 @@ services:
       dockerfile: Dockerfile.katago
     container_name: games-go
     ports:
-      - "10782:10782"
+      - "11213:11213"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10782/api/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:11213/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -108,10 +108,10 @@ services:
       dockerfile: Dockerfile.edax
     container_name: games-edax
     ports:
-      - "10785:10785"
+      - "11214:11214"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10785/api/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:11214/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -125,10 +125,10 @@ services:
       dockerfile: Dockerfile.gnubg
     container_name: games-gnubg
     ports:
-      - "10786:10786"
+      - "11215:11215"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10786/api/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:11215/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -142,10 +142,10 @@ services:
       dockerfile: Dockerfile.openspiel
     container_name: games-openspiel
     ports:
-      - "10787:10787"
+      - "11216:11216"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10787/api/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:11216/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -159,10 +159,10 @@ services:
       dockerfile: Dockerfile.mohex
     container_name: games-mohex
     ports:
-      - "10711:10711"
+      - "11210:11210"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:10711/api/status"]
+      test: ["CMD", "curl", "-f", "http://localhost:11210/api/status"]
       interval: 30s
       timeout: 10s
       retries: 3

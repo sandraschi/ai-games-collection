@@ -25,13 +25,13 @@ All 7 engines are operational and containerized:
 
 | Engine | Game | Port | Working |
 |--------|------|------|---------|
-| Stockfish 16 | Chess | 10780 | Yes (Docker + native) |
-| YaneuraOu 9.40 | Shogi | 10781 | Yes (Docker + native) |
-| KataGo 1.16.5 | Go | 10782 | Yes (Docker + native) |
-| Edax 4.6 | Othello/Reversi | 10785 | Yes (Docker) |
-| GNU Backgammon 1.08 | Backgammon | 10786 | Yes (Docker) |
-| OpenSpiel 1.6.15 | 119 games | 10787 | Yes (Docker) |
-| MoHex (Fuego+Benzene) | Hex | 10711 | Yes (Docker) |
+| Stockfish 16 | Chess | 11211 | Yes (Docker + native) |
+| YaneuraOu 9.40 | Shogi | 11212 | Yes (Docker + native) |
+| KataGo 1.16.5 | Go | 11213 | Yes (Docker + native) |
+| Edax 4.6 | Othello/Reversi | 11214 | Yes (Docker) |
+| GNU Backgammon 1.08 | Backgammon | 11215 | Yes (Docker) |
+| OpenSpiel 1.6.15 | 119 games | 11216 | Yes (Docker) |
+| MoHex (Fuego+Benzene) | Hex | 11210 | Yes (Docker) |
 
 ---
 
@@ -41,13 +41,13 @@ All 7 engines are operational and containerized:
 |---------|------|
 | Frontend (Vite) | 10986 |
 | Gateway (FastAPI + FastMCP) | 10987 |
-| Stockfish | 10780 |
-| YaneuraOu (Shogi) | 10781 |
-| KataGo (Go) | 10782 |
-| Edax (Othello) | 10785 |
-| GNU Backgammon | 10786 |
-| OpenSpiel | 10787 |
-| MoHex (Hex) | 10711 |
+| Stockfish | 11211 |
+| YaneuraOu (Shogi) | 11212 |
+| KataGo (Go) | 11213 |
+| Edax (Othello) | 11214 |
+| GNU Backgammon | 11215 |
+| OpenSpiel | 11216 |
+| MoHex (Hex) | 11210 |
 
 ---
 

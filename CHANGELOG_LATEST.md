@@ -12,7 +12,7 @@
 
 ### Fixed
 - **3D Jenga instant-crash on start** — `createBlock` pushed each mesh into `blocks` twice while pushing the physics body once, so the per-frame mesh↔body sync snapped every block to the *wrong* body's position (scrambled tower, double tower overlap, z-fighting); and `startGame` built the tower twice (`buildTower()` + `newGame()`). Removed the duplicate push and the redundant build — tower now builds once with 54/54 correctly aligned blocks.
-- **OpenSpiel never worked** — the engine (a declared `open-spiel` dependency) was never started natively; the Docker-only path was dead. `start.ps1` now auto-starts `engines/open_spiel_server.py` on 10787 like the other engines; also repaired a corrupted `aiohttp` install (missing `_websocket/helpers.py`) that crashed the engine at import.
+- **OpenSpiel never worked** — the engine (a declared `open-spiel` dependency) was never started natively; the Docker-only path was dead. `start.ps1` now auto-starts `engines/open_spiel_server.py` on 11216 like the other engines; also repaired a corrupted `aiohttp` install (missing `_websocket/helpers.py`) that crashed the engine at import.
 - **OpenSpiel UI crashed on every game** — `Object.keys(gameParams)` threw on `null` for the 100+ games without parameters; guarded in all three call sites. OpenSpiel now plays end-to-end (107 games, MCTS vs human).
 - **Broken games-page links/functions** (audit pass): hiragana-katakana Knowledge Tree link 404; multiplayer page never loaded `unified-multiplayer.js`/`multiplayer.js` (ReferenceError on `new UnifiedMultiplayer()`); shogi-education loaded the wrong root JS (dead tab/viewer buttons, 404 data paths now `/data/shogi/...`); Risk attack/fortify buttons called undefined `attack()`/`fortify()`; td-chess "Revert Timeline" button had no implementation (removed); chess debug buttons called undefined `testAIConnection()`/`testAPIConnection()` (wired to `initializeAI()`); Japanese grammar free-text check buttons had no implementation (implemented `checkConstruction()`/`checkCorrection()`).
 - **Dead-code sweep** (games audit, part 2): kanji-table page now loads the full implementation (`japanese-language/kanji-table.js`, offline fallback built in) instead of the sample-data stub; removed dead `multiplayerUrl`/`multiplayerWsUrl` getters and the 11876 legacy branch from `api-config.js`; index links Jenga directly (no redirect hop); deleted 14 unreachable "Coming Soon" shells, 16 orphaned JS files (incl. `js/jenga.js`, `js/core/*` dead chain, `games/shared/sw.js` duplicate), the `strategy-games/jenga.html` redirect shell, 2 empty `test_*.html` shells, an orphan BMP, and 16 timestamped `.bak` files. All 121 index catalog links verified resolving; no dangling references remain.
@@ -22,10 +22,10 @@
 ## [2.6.0] - 2026-07-03
 
 ### Added
-- **Edax 4.6** — Othello/Reversi engine. Port 10785.
-- **GNU Backgammon 1.08** — Backgammon engine. Port 10786.
-- **OpenSpiel 1.6.15** — 119-game framework. Port 10787.
-- **MoHex** — Hex engine (Fuego+Benzene). Port 10711.
+- **Edax 4.6** — Othello/Reversi engine. Port 11214.
+- **GNU Backgammon 1.08** — Backgammon engine. Port 11215.
+- **OpenSpiel 1.6.15** — 119-game framework. Port 11216.
+- **MoHex** — Hex engine (Fuego+Benzene). Port 11210.
 - Python aiohttp server wrappers for all four new engines.
 - `docker-compose.yml` engine services for all new engines.
 - Gateway env vars for all engine URLs.

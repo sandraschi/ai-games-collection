@@ -2,7 +2,7 @@
 
 ### Added
 - **UNO** card game vs AI (2-4 players, action cards, UNO-call penalty, match scoring to 500) + education page.
-- **OpenSpiel engine now starts natively** via start.ps1 (port 10787; was Docker-only and never ran). 107 games loaded; UI bug Object.keys(null) fixed - fully playable vs MCTS.
+- **OpenSpiel engine now starts natively** via start.ps1 (port 11216; was Docker-only and never ran). 107 games loaded; UI bug Object.keys(null) fixed - fully playable vs MCTS.
 
 ### Changed
 - **Tarock rebuilt** as faithful 2-player Zwanzigerrufen (40-card deck, real bidding, Farbzwang/Trumpfzwang, 88-point scoring, premiums).
@@ -60,10 +60,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.6.0] - 2026-07-03 - Four new game AI engines
 ### Added
-- **Edax 4.6** — Othello/Reversi engine (GPL-3.0, C binary). Port 10785. `Dockerfile.edax`.
-- **GNU Backgammon 1.08** — Backgammon engine (GPL-3.0, apt package). Port 10786. `Dockerfile.gnubg`.
-- **OpenSpiel 1.6.15** — 119-game framework (Apache-2.0, pip install). Port 10787. `Dockerfile.openspiel`.
-- **MoHex** — Hex engine built from Fuego+Benzene (LGPL-3.0). Port 10711. `Dockerfile.mohex`.
+- **Edax 4.6** — Othello/Reversi engine (GPL-3.0, C binary). Port 11214. `Dockerfile.edax`.
+- **GNU Backgammon 1.08** — Backgammon engine (GPL-3.0, apt package). Port 11215. `Dockerfile.gnubg`.
+- **OpenSpiel 1.6.15** — 119-game framework (Apache-2.0, pip install). Port 11216. `Dockerfile.openspiel`.
+- **MoHex** — Hex engine built from Fuego+Benzene (LGPL-3.0). Port 11210. `Dockerfile.mohex`.
 - Python aiohttp server wrappers for all four new engines (`engines/edax-server.py`, `engines/gnubg-server.py`, `engines/open_spiel_server.py`, `engines/mohex-server.py`).
 - `docker-compose.yml`: four new engine services (edax-engine, gnubg-engine, openspiel-engine, mohex-engine).
 - Gateway environment variables for all new engine URLs (`EDAX_URL`, `GNUBG_URL`, `OPENSPIEL_URL`, `MOHEX_URL`).
@@ -137,7 +137,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **🌍 Firebase Realtime DB Synchronization**: Activated the `sync_manager` for P2P game state mirroring (targeting `europe-west1`).
 - **🔗 Global Multiplayer Sessions**: Enabled non-local multiplayer games via the new Firebase-backed persistence layer.
-- **🛡️ Industrial Hardening**: Standardized all engine ports to the SOTA range (`10780-10782`) for Stockfish, Shogi, and Go.
+- **🛡️ Industrial Hardening**: Standardized all engine ports to the SOTA range (`11211-11213`) for Stockfish, Shogi, and Go.
 
 ### Changed
 - **🧹 Mock Purge**: Completely removed all simulated engine logic; all game analysis now routes to high-fidelity external engines.

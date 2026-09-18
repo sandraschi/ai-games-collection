@@ -71,9 +71,9 @@ The AI Games Collection MCP Server enables correspondence play and AI-powered an
 ### Supported Games
 
 #### Full AI Engine Support:
-- **Chess** - Stockfish engine (port 10780)
-- **Shogi** - YaneuraOu engine (port 10781)
-- **Go** - KataGo engine (port 10782)
+- **Chess** - Stockfish engine (port 11211)
+- **Shogi** - YaneuraOu engine (port 11212)
+- **Go** - KataGo engine (port 11213)
 
 #### Correspondence Play:
 - **Gomoku**, **Checkers**, **Connect Four**, **Mühle**, **Battleship**, **Scrabble**
@@ -189,19 +189,19 @@ python -c "import ai_games_collection_mcp.mcp_server; print('✅ Installation su
 #### Stockfish (Chess)
 ```powershell
 python backend/simple-stockfish-server.py
-# Binds to 0.0.0.0:10780
+# Binds to 0.0.0.0:11211
 ```
 
 #### KataGo (Go)
 ```powershell
 python backend/simple-go-server.py
-# Binds to 0.0.0.0:10782
+# Binds to 0.0.0.0:11213
 ```
 
 #### YaneuraOu (Shogi)
 ```powershell
 python backend/simple-shogi-server.py
-# Binds to 0.0.0.0:10781
+# Binds to 0.0.0.0:11212
 ```
 
 ---
@@ -234,9 +234,9 @@ The server supports `.env` for configuration. Example:
 
 ```bash
 # AI Engine Service URLs
-STOCKFISH_URL=http://localhost:10780
-SHOGI_URL=http://localhost:10781
-GO_URL=http://localhost:10782
+STOCKFISH_URL=http://localhost:11211
+SHOGI_URL=http://localhost:11212
+GO_URL=http://localhost:11213
 
 # Firebase P2P Synchronization Config
 FIREBASE_SERVICE_ACCOUNT_JSON=firebase-service-account.json
@@ -805,9 +805,9 @@ User Request → MCP Server → Tool Execution → Database/Engine → ADN → R
 
 ### Ports and Endpoints
 
-- **Stockfish**: `http://localhost:10780/api/*`
-- **YaneuraOu**: `http://localhost:10781/api/*`
-- **KataGo**: `http://localhost:10782/api/*`
+- **Stockfish**: `http://localhost:11211/api/*`
+- **YaneuraOu**: `http://localhost:11212/api/*`
+- **KataGo**: `http://localhost:11213/api/*`
 - **P2P Sync**: Firebase Realtime DB (europe-west1)
 - **KataGo**: `http://localhost:10002/api/*`
 - **YaneuraOu**: `http://localhost:10003/api/*`
