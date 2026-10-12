@@ -110,7 +110,7 @@ async def handle_move(request):
                 status=400,
             )
 
-        result = get_best_move(position_id, dice)
+        result = await asyncio.to_thread(get_best_move, position_id, dice)
 
         logger.info(
             "gnubg %s %s -> %s (equity %.4f)",
