@@ -1,13 +1,13 @@
 {
-    "name": "ai-games-collection-native",
-    "private": true,
-    "version": "2.5.0",
-    "scripts": {
-        "dev": "tauri dev",
-        "build": "tauri build",
-        "build:debug": "tauri build --debug"
-    },
-    "devDependencies": {
-        "@tauri-apps/cli": "^2"
-    }
+	"name": "ai-games-collection-native",
+	"private": true,
+	"version": "2.5.0",
+	"scripts": {
+		"dev": "tauri dev",
+		"build": "tauri build",
+		"build:debug": "tauri build --debug"
+	},
+	"devDependencies": {
+		"@tauri-apps/cli": "^2"
+	}
 }
