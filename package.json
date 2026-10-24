@@ -1,6 +1,6 @@
 {
-  "name": "ai-games-collection",
-  "version": "2.5.1",
-  "private": true,
-  "description": "Games Collection - 150+ games with AI engines"
+	"name": "ai-games-collection",
+	"version": "2.5.1",
+	"private": true,
+	"description": "Games Collection - 150+ games with AI engines"
 }
