@@ -6,10 +6,15 @@
     <title>3D Jenga - Physics Block Tower Game</title>
     <link rel="stylesheet" href="/styles.css">
     <script src="/js/theme-switcher.js"></script>
-    <!-- Three.js and Cannon.js for 3D physics -->
+    <!-- Three.js r128 global (kept) + cannon-es ESM via importmap (replaces cannon.js 0.6.2 global) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js?v=20241227"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js?v=20241227"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js?v=20241227"></script>
+    <script type="importmap">
+    {"imports":{
+      "cannon-es":"https://unpkg.com/cannon-es@0.20.0/dist/cannon-es.js",
+      "physics-world":"../shared/physics-world.js"
+    }}
+    </script>
     <style>
         :root {
             --jenga-gold: #f59e0b;
@@ -399,6 +404,6 @@
         </div>
     </div>
 
-    <script src="strategy-games/jenga.js"></script>
+    <script type="module" src="strategy-games/jenga.js"></script>
 </body>
 </html>
