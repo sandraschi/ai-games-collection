@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avatar Viewer — Nekomimi-chan (three-vrm)</title>
+<link rel="stylesheet" href="/styles.css">
+<style>
+body{background:#0a0a0c;color:#e0e0e0;font-family:Outfit,Segoe UI,sans-serif;margin:0}
+.top-bar{display:flex;justify-content:space-between;padding:10px 20px;background:rgba(20,20,25,.85);border-bottom:1px solid rgba(245,158,11,.2)}
+#avatar3D{width:100vw;height:calc(100vh - 53px);display:block}
+.panel{position:absolute;top:70px;left:12px;background:rgba(0,0,0,.7);padding:12px;border-radius:8px;max-width:300px}
+.btn{padding:8px 14px;background:rgba(245,158,11,.15);color:#f59e0b;border:1px solid rgba(245,158,11,.3);border-radius:6px;cursor:pointer;margin:4px}
+</style>
+<script type="importmap">
+{"imports":{
+  "three":"https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/",
+  "@pixiv/three-vrm":"https://unpkg.com/@pixiv/three-vrm@2.0.0/lib/three-vrm.module.js"
+}}
+</script>
+</head>
+<body>
+<div class="top-bar"><h1 style="color:#f59e0b;margin:0">Nekomimi-chan — VRM 1.0</h1><span id="status">loading…</span></div>
+<canvas id="avatar3D"></canvas>
+<div class="panel">
+<p>Source: <code>avatar-mcp/models/Nekomimi-chan.vrm</code> (17.5 MB, copy to <code>games/assets/</code> for offline).</p>
+<button class="btn" id="blink">Blink</button>
+<button class="btn" id="wave">Wave</button>
+<a href="/"><button class="btn">Back</button></a>
+</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm';
+
+const status = document.getElementById('status');
+const canvas = document.getElementById('avatar3D');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true });
+renderer.setSize(innerWidth, innerHeight - 53);
+renderer.setPixelRatio(devicePixelRatio);
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0f172a);
+const camera = new THREE.PerspectiveCamera(30, innerWidth/(innerHeight-53), 0.1, 20);
+camera.position.set(0, 1.4, 2.5);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 1.1, 0); controls.update();
+scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+const dir = new THREE.DirectionalLight(0xffffff, 1.2); dir.position.set(2,4,3); scene.add(dir);
+
+let vrm;
+const loader = new GLTFLoader();
+loader.register((parser)=> new VRMLoaderPlugin(parser));
+async function load(url){
+  status.textContent = 'loading ' + url;
+  const gltf = await loader.loadAsync(url);
+  vrm = gltf.userData.vrm;
+  VRMUtils.removeUnnecessaryVertices(gltf.scene);
+  VRMUtils.removeUnnecessaryJoints(gltf.scene);
+  vrm.scene.rotation.y = Math.PI;
+  scene.add(vrm.scene);
+  status.textContent = 'ready — drag to orbit';
+}
+// Try local copy first, fall back to fleet path note
+const candidates = ['../assets/Nekomimi-chan.vrm','./assets/Nekomimi-chan.vrm'];
+try { await load(candidates[0]); }
+catch(e){ status.textContent = 'copy avatar-mcp/models/Nekomimi-chan.vrm to games/assets/ to view locally. ' + e.message; }
+
+const clock = new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  const dt = clock.getDelta();
+  if(vrm){ vrm.update(dt); vrm.scene.position.y = Math.sin(clock.elapsedTime*1.2)*0.01; }
+  controls.update(); renderer.render(scene, camera);
+}
+animate();
+document.getElementById('blink').onclick = ()=> vrm?.expressionManager?.setValue('blink',1) ?? null;
+document.getElementById('wave').onclick = ()=> status.textContent = 'wave = wire to three-vrm-animation in v2';
+addEventListener('resize', ()=>{ camera.aspect = innerWidth/(innerHeight-53); camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight-53); });
+</script>
+</body>
+</html>
