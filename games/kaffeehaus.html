@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kaffeehaus — Vienna Cafe (Three.js r128)</title>
+<link rel="stylesheet" href="/styles.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<style>
+:root{--gold:#f59e0b;--bg:#0a0a0c;--panel:rgba(20,20,25,.85)}
+body{background:var(--bg);color:#e0e0e0;font-family:Outfit,Segoe UI,sans-serif;margin:0;overflow:hidden}
+.top-bar{display:flex;justify-content:space-between;padding:10px 20px;background:var(--panel);border-bottom:1px solid rgba(245,158,11,.2)}
+.top-bar h1{margin:0;color:var(--gold);font-size:1.3em}
+#kaffee3D{width:100vw;height:calc(100vh - 120px);display:block;cursor:grab}
+.hud{position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.7);padding:10px 14px;border-radius:8px}
+.btn{padding:8px 14px;background:rgba(245,158,11,.15);color:var(--gold);border:1px solid rgba(245,158,11,.3);border-radius:6px;cursor:pointer;margin:4px}
+</style>
+</head>
+<body>
+<div class="top-bar"><h1>Kaffeehaus — Hawelka</h1><span id="status">click a table to serve</span></div>
+<canvas id="kaffee3D"></canvas>
+<div class="hud"><span>Orders: <strong id="orders">0</strong></span> <button class="btn" onclick="serveMelange()">Serve Melange</button> <a href="/"><button class="btn">Back</button></a></div>
+<script src="puzzle-games/kaffeehaus.js"></script>
+</body>
+</html>
