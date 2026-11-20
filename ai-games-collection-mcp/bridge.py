@@ -24,4 +24,4 @@ if __name__ == "__main__":
 
     # We use streamable-http for stateless, resilient communication
     # Port 10741 as per SOTA standards (10740 is frontend)
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=10741)
+    mcp.run(transport="streamable-http", host="127.0.0.1", port=10741)
