@@ -32,15 +32,25 @@ async def cors_middleware(request, handler):
     """Simple CORS middleware for when aiohttp_cors fails"""
     response = await handler(request)
 
-    # Add CORS headers
-    response.headers.update(
-        {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "*",
-            "Access-Control-Allow-Credentials": "true",
-        }
-    )
+    # Add loopback-scoped CORS headers
+    origin = request.headers.get("Origin", "")
+    headers = {
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Credentials": "true",
+    }
+    if origin.startswith(
+        (
+            "http://localhost:",
+            "http://127.0.0.1:",
+            "https://localhost:",
+            "https://127.0.0.1:",
+            "tauri://localhost",
+            "https://tauri.localhost",
+        )
+    ):
+        headers["Access-Control-Allow-Origin"] = origin
+    response.headers.update(headers)
 
     # Handle preflight requests
     if request.method == "OPTIONS":
