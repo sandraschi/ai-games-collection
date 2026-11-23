@@ -1,5 +1,6 @@
-// AI Games Collection jenga 3d - Physics-based Block Tower with Three.js & Cannon.js
-// **Timestamp**: 2025-12-26
+// AI Games Collection jenga 3d - Physics-based Block Tower with Three.js & cannon-es
+// **Timestamp**: 2025-12-26 — migrated 2026-11-04 from CANNON 0.6.2 global to cannon-es ESM
+import * as CANNON from 'cannon-es';
 
 // Three.js scene variables
 let scene, camera, renderer, controls;
@@ -455,11 +456,12 @@ function init3D() {
 
         // Physics world
         try {
-            world = new CANNON.World();
-            world.gravity.set(0, -9.82, 0);
+            world = new CANNON.World({ gravity: new CANNON.Vec3(0, -9.82, 0) });
             world.broadphase = new CANNON.SAPBroadphase(world);
+            world.allowSleep = true;
+            world.solver.iterations = 12;
             world.defaultContactMaterial.friction = currentFriction;
-            world.defaultContactMaterial.restitution = 0.3;
+            world.defaultContactMaterial.restitution = 0.05;
             console.log('✅ Physics world created successfully');
         } catch (error) {
             console.error('❌ Failed to create physics world:', error);
@@ -636,9 +638,12 @@ function createBlock(x, y, z, id, isRotated = false) {
 
     // Physics body - start as kinematic (mass: 0) so blocks don't fall immediately
     // Blocks will be made dynamic when removed from tower
-    const body = new CANNON.Body({ 
+    // cannon-es: enable sleeping so the tower rests instead of jittering
+    const body = new CANNON.Body({
         mass: 0,  // Kinematic - won't fall due to gravity
-        type: CANNON.Body.KINEMATIC  // Explicit kinematic type
+        type: CANNON.Body.KINEMATIC,  // Explicit kinematic type
+        sleepSpeedLimit: 0.15,
+        sleepTimeLimit: 0.6
     });
     body.addShape(physicsShape);
     body.position.set(x, y, z);
@@ -697,18 +702,11 @@ function createDachshundGeometry(width, height, depth) {
     geometry.add(head);
     geometry.add(tail);
 
-    // Merge all geometries into one
-    const mergedGeometry = new THREE.BufferGeometry();
-    geometry.traverse((child) => {
-        if (child.isMesh) {
-            const matrix = child.matrixWorld;
-            const geom = child.geometry.clone();
-            geom.applyMatrix4(matrix);
-            mergedGeometry.merge(geom);
-        }
-    });
-
-    return mergedGeometry;
+    // r128 has no BufferGeometry.merge() — return a stable Box fallback so the
+    // dachshund theme never crashes. Visual variety comes from material color.
+    // TODO: proper merge via BufferGeometryUtils if we want the dog shape back.
+    console.warn('dachshund geometry: using Box fallback (r128 has no BufferGeometry.merge)');
+    return new THREE.BoxGeometry(width, height, depth);
 }
 
 function buildTower() {
@@ -1780,14 +1778,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn('Failed to initialize theme selector:', error);
         }
 
-        // Wait for Three.js and Cannon.js libraries to load
+        // Wait for Three.js global + cannon-es ESM import to be ready
         let libraryCheckAttempts = 0;
         const maxLibraryCheckAttempts = 100; // 10 seconds max
 
         const checkLibraries = () => {
             try {
                 libraryCheckAttempts++;
-                console.log(`Library check attempt ${libraryCheckAttempts} - THREE:`, typeof THREE, 'CANNON:', typeof CANNON);
+                console.log(`Library check attempt ${libraryCheckAttempts} - THREE:`, typeof THREE, 'CANNON(es):', typeof CANNON);
 
                 if (typeof THREE === 'undefined') {
                     if (libraryCheckAttempts >= maxLibraryCheckAttempts) {
@@ -1800,9 +1798,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (typeof CANNON === 'undefined') {
                     if (libraryCheckAttempts >= maxLibraryCheckAttempts) {
-                        throw new Error('CANNON.js library failed to load after 10 seconds');
+                        throw new Error('cannon-es failed to import — check importmap + network');
                     }
-                    console.warn('⏳ Waiting for CANNON.js...');
+                    console.warn('⏳ Waiting for cannon-es...');
                     setTimeout(checkLibraries, 100);
                     return;
                 }
@@ -1843,4 +1841,17 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Continuing despite initialization errors...');
     }
 });
+
+// ESM: HTML onclick="..." needs globals — re-export module functions to window.
+window.pullBlock = pullBlock;
+window.resetTower = typeof resetTower !== 'undefined' ? resetTower : undefined;
+window.newGame = typeof newGame !== 'undefined' ? newGame : undefined;
+window.toggleAI = typeof toggleAI !== 'undefined' ? toggleAI : undefined;
+window.setCameraAngle = typeof setCameraAngle !== 'undefined' ? setCameraAngle : undefined;
+window.resetCamera = typeof resetCamera !== 'undefined' ? resetCamera : undefined;
+window.setJengaVariant = typeof setJengaVariant !== 'undefined' ? setJengaVariant : undefined;
+window.setJengaTheme = typeof setJengaTheme !== 'undefined' ? setJengaTheme : undefined;
+window.setFriction = typeof setFriction !== 'undefined' ? setFriction : undefined;
+window.updateFrictionDisplay = typeof updateFrictionDisplay !== 'undefined' ? updateFrictionDisplay : undefined;
+window.setAIPersonality = typeof setAIPersonality !== 'undefined' ? setAIPersonality : undefined;
 
