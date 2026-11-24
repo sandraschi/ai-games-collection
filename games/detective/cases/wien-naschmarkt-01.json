@@ -1,0 +1,78 @@
+{
+  "case_id": "wien-naschmarkt-01",
+  "title": "The Saffron Weighs Light",
+  "city": "Vienna",
+  "district": "Naschmarkt",
+  "difficulty": 1,
+  "brief": "Stand 7 locked from inside, saffron gone, owner insists on ghosts. 4 suspects. One lies.",
+  "places": [
+    {"id": "stand_7", "name": "Stand 7", "description": "Spice stand, shutter half-down, saffron smell + bleach.", "clues": ["clue_scale", "clue_bleach"]},
+    {"id": "lager", "name": "Back storage", "description": "Cramped, padlocked from inside earlier. Thread on latch.", "clues": ["clue_key", "clue_thread"]},
+    {"id": "cafe", "name": "Cafe next door", "description": "Mira was seen here 18:20, claims home.", "clues": ["clue_receipt"]}
+  ],
+  "clues": [
+    {"id": "clue_scale", "title": "Rigged scale", "text": "Scale shows 110g for 100g weight. Someone skimmed for months.", "places_found": ["stand_7"], "contradicts": ["mira_s1"]},
+    {"id": "clue_bleach", "title": "Bleach wipe", "text": "Counter wiped with bleach, saffron dust in grout remains.", "places_found": ["stand_7"], "contradicts": []},
+    {"id": "clue_key", "title": "Inside bolt", "text": "Door bolted from inside. Window latch fresh scratches.", "places_found": ["lager"], "contradicts": ["jose_s2"]},
+    {"id": "clue_thread", "title": "Thread trick", "text": "Black thread on latch + bolt — classic inside-job thread pull.", "places_found": ["lager"], "contradicts": ["jose_s2"]},
+    {"id": "clue_receipt", "title": "18:22 receipt", "text": "Cafe receipt: Mira, Melange, 18:22. Not home.", "places_found": ["cafe"], "contradicts": ["mira_s1"]},
+    {"id": "clue_linen", "title": "Linen fibres", "text": "Blue linen fibres on window sill match Jose's bag.", "places_found": ["lager"], "contradicts": ["jose_s1"]},
+    {"id": "clue_ledger", "title": "Double ledger", "text": "Owner kept two ledgers, skimmed too. Motive to fake theft?", "places_found": ["stand_7"], "contradicts": ["owner_s1"]},
+    {"id": "clue_ghost", "title": "Grey Captain tale", "text": "Local ghost story owner uses to scare staff.", "places_found": ["cafe"], "contradicts": ["owner_s2"]}
+  ],
+  "suspects": [
+    {
+      "id": "mira", "name": "Mira H.", "role": "Stand helper",
+      "voice": "young Viennese, nervous, short sentences",
+      "truth": "Saw Jose leave at 18:20 with linen bag. Hid because she pocketed cash earlier.",
+      "lies_about": ["Was home all evening"],
+      "leak_condition": "Present clue_scale or clue_receipt, or ask 3x about 18:00-19:00, then admit cafe + seeing Jose",
+      "statements": [
+        {"sid": "mira_s1", "text": "I was home all evening."},
+        {"sid": "mira_s2", "text": "Jose closed at 18:00, I think."}
+      ]
+    },
+    {
+      "id": "jose", "name": "Jose P.", "role": "Delivery driver",
+      "voice": "brisk, deflects, jokes",
+      "truth": "Took saffron through window, faked inside bolt with thread. Linen bag.",
+      "lies_about": ["Never went back after 17:00", "Bolt proves ghost"],
+      "leak_condition": "Present clue_key or clue_thread or clue_linen, then slips to 'okay I was there but didn't take'",
+      "statements": [
+        {"sid": "jose_s1", "text": "I left at 17:00, never went back."},
+        {"sid": "jose_s2", "text": "Bolted from inside — must be the ghost, no?"}
+      ]
+    },
+    {
+      "id": "owner", "name": "Frau E.", "role": "Stand owner",
+      "voice": "indignant, ghost-story believer (performs it)",
+      "truth": "Skimmed with rigged scale for months. Called ghost to avoid audit. Did not steal saffron tonight.",
+      "lies_about": ["Books are clean", "Grey Captain took it"],
+      "leak_condition": "Present clue_ledger or clue_scale, then admits skimming but denies tonight",
+      "statements": [
+        {"sid": "owner_s1", "text": "My books are clean for 20 years."},
+        {"sid": "owner_s2", "text": "The Grey Captain took it, same as Salem."}
+      ]
+    },
+    {
+      "id": "ahmed", "name": "Ahmed K.", "role": "Cafe waiter next door",
+      "voice": "calm, precise, remembers times",
+      "truth": "Served Mira 18:22, saw Jose with linen bag 18:25 toward U4. Neutral witness.",
+      "lies_about": [],
+      "leak_condition": "Always truthful, but vague unless asked for times",
+      "statements": [
+        {"sid": "ahmed_s1", "text": "Mira was here around half six, yes."},
+        {"sid": "ahmed_s2", "text": "Saw Jose with a bag heading to Kettenbrueckengasse."}
+      ]
+    }
+  ],
+  "solution": {
+    "culprit": "jose",
+    "method": "hid in lager, slipped out window, pulled bolt with thread, linen bag",
+    "motive": "debt + knew owner skimmed so theft would be blamed on audit/ghost",
+    "required_contradictions": [["clue_key", "jose_s2"], ["clue_receipt", "mira_s1"]],
+    "report_questions": ["who", "how", "why"]
+  },
+  "pass_stamps": {"city": "Vienna", "icon": "pretzel"},
+  "validator_prompt": "You are a detective. You only know places + found clues + transcript. Can you deduce who/how/why? Return JSON {solvable:bool, chain:[], missing:''}. If unsolvable with required_contradictions, reject case."
+}
